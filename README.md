@@ -62,7 +62,8 @@ Model performance will be evaluated using **mean Average Precision (mAP)** and v
 ### 5. Expected Outcome
 
 - Improved mAP and visual clarity through attention-guided feature extraction  
-- Visualization of attention maps to show focus regions  
+- Visualization of attention maps to show focus regions
+- A final presentation and short written report will summarize the findings.
 
 
 ---
