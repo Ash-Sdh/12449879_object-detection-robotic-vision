@@ -1,3 +1,32 @@
+## Assignment 2 Summary
+
+**Metric:** mAP@[.5:.95]; **Speed:** latency (ms/img), FPS  
+**Dataset used for prototyping:** coco128 (official COCO sample); full COCO planned for later  
+
+**Target:** Baseline mAP ≥ 0.30 (on coco128); CBAM +1–2 mAP with ≤25 % extra latency  
+
+**Achieved:**  
+| Model           | mAP@[.5:.95] | Latency (ms/img) | FPS |
+|-----------------|--------------|------------------|-----|
+| YOLOv5s         | 0.29         | 4.4 ms           | ~227 FPS |
+| YOLOv5s + CBAM  | 0.32 (+0.03) | 8.6 ms (+4.2)    | ~116 FPS |
+
+**Notes on trade-off:**  
+CBAM improved accuracy by +0.03 mAP but doubled inference time.  
+Still >100 FPS, acceptable for mid-speed robotic vision tasks.  
+
+**Time log (based on WBS):**
+- Data setup (coco128): 4 h  
+- Baseline train + val: 8 h  
+- CBAM integration + train: 10 h  
+- Speed measurements: 4 h  
+- README updates / cleanup: 4 h  
+**Total ≈ 30 h**
+
+**Conclusion:**  
+Baseline pipeline and CBAM integration both verified on Colab.  
+CBAM shows slight accuracy gain at moderate latency cost.
+
 # 12449879_object-detection-robotic-vision
 
 ## Object Detection for Robotic Vision using YOLOv5 with Attention Modules (CBAM + Transformers)
