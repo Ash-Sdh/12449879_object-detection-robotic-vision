@@ -33,9 +33,9 @@ print(f"CBAM inserted: {inserted}")
 
 # Train config
 model.train(
-    data="./data/coco_subset.yaml",
+    data="coco128.yaml",   # ✅ use Ultralytics built-in dataset config
     epochs=25,
     imgsz=640,
     batch=16,
-    name="cbam_yolov5s"
+    name="cbam_yolov5s",
 )
