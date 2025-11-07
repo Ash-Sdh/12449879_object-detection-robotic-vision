@@ -1,0 +1,5 @@
+train: coco128/images/train
+val: coco128/images/train
+test: coco128/images/train
+nc: 10
+names: [person, bicycle, car, motorbike, bus, truck, bottle, chair, cup, dog]
