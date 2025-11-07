@@ -1,3 +1,6 @@
+import sys, os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from ultralytics import YOLO
 import torch.nn as nn
 from models.cbam import CBAM
