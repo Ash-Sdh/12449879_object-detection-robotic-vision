@@ -33,7 +33,7 @@ print(f"CBAM inserted: {inserted}")
 
 # Train config
 model.train(
-    data="data/coco_subset.yaml",
+    data="./data/coco_subset.yaml",
     epochs=25,
     imgsz=640,
     batch=16,
