@@ -1,0 +1,9 @@
+# Minimal YOLOv5s with one CBAM on top layer (simple demo)
+# Ultralytics will load this as a model definition.
+backbone:
+  - type: yolov5s
+head:
+  - type: Detect
+
+# Ultralytics doesn't parse arbitrary python modules in YAML directly.
+# We'll load CBAM in a custom python hook in scripts/train_cbam.py (below).
