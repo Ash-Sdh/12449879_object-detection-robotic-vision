@@ -5,9 +5,7 @@ from ultralytics import YOLO
 import torch.nn as nn
 from models.cbam import CBAM
 
-
 model = YOLO("yolov5s.pt")
-
 
 inserted = False
 for m in reversed(list(model.model.modules())):
@@ -16,15 +14,12 @@ for m in reversed(list(model.model.modules())):
         parent = m
         break
 
-
 if isinstance(model.model, nn.Sequential):
     ch = 256
     model.model.append(CBAM(ch))
     inserted = True
 
 print(f"CBAM inserted: {inserted}")
-
-
 model.train(
     data="coco128.yaml",   g
     epochs=25,
