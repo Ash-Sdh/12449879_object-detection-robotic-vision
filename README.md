@@ -4,7 +4,7 @@
 ### Objective
 The goal of this assignment was to build and improve a baseline object detection model for robotic vision.  
 A pre-trained YOLOv5s model (trained on COCO) was used as the baseline.  
-To improve performance in cluttered environments, a Convolutional Block Attention Module (CBAM) was added to the YOLOv5 backbone.  
+To improve performance in cluttered environments, a Convolutional Block Attention Module (CBAM) was added to the YOLOv5 .  
 Model accuracy and speed were evaluated to analyze the trade-off between detection precision and inference time.
 
 ### Implementation Overview
@@ -59,7 +59,7 @@ Both models operate above real-time threshold (>30 FPS), confirming suitability 
 
 **Figure 1.** *Trade-off between detection accuracy and inference time.*  
 The CBAM-enhanced YOLOv5s shows improved accuracy with a small latency increase,  
-demonstrating a balanced optimization suitable for real-time robotic perception.
+showing a balanced optimization suitable for real-time robotic perception.
 
 ---
 
