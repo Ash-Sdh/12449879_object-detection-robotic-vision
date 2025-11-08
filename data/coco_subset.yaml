@@ -1,4 +1,4 @@
-# Correct COCO128 dataset paths for Ultralytics in Colab
+
 train: ../datasets/coco128/images/train
 val: ../datasets/coco128/images/train
 test: ../datasets/coco128/images/train
