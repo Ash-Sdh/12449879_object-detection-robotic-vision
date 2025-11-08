@@ -1,15 +1,8 @@
 import time, torch
 from ultralytics import YOLO
-
-# Choose your model weights:
-#   runs/detect/baseline_yolov5s/weights/best.pt
-#   runs/detect/cbam_yolov5s/weights/best.pt
 WEIGHTS = "runs/detect/baseline_yolov5s/weights/best.pt"
-
 model = YOLO(WEIGHTS)
-img = torch.zeros(1, 3, 640, 640)  # dummy 640x640
-
-# warmup
+img = torch.zeros(1, 3, 640, 640)  
 for _ in range(10):
     model.predict(img, verbose=False)
 
