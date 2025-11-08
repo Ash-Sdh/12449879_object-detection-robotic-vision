@@ -7,17 +7,6 @@ A pre-trained YOLOv5s model (trained on COCO) was used as the baseline.
 To improve performance in cluttered environments, a Convolutional Block Attention Module (CBAM) was added to the YOLOv5 backbone.  
 Model accuracy and speed were evaluated to analyze the trade-off between detection precision and inference time.
 
----
-
-### Expected Tasks
-According to the assignment brief, the following steps were required:
-1. Build and train a working end-to-end baseline model.  
-2. Add a creative improvement (such as attention or optimization).  
-3. Evaluate model performance using accuracy and latency metrics.  
-4. Document the experiment setup, results, and runtime effort.
-
----
-
 ### Implementation Overview
 1. **Baseline YOLOv5s**
    - Pre-trained model fine-tuned on the COCO128 dataset.  
@@ -66,7 +55,7 @@ Both models operate above real-time threshold (>30 FPS), confirming suitability 
 
 ### Accuracy vs Inference Time Trade-off
 
-![Accuracy vs Inference Time](plots/accuracy_vs_latency.png)
+![Accuracy vs Inference Time](plots/accuracy_vs_latency.png.png)
 
 **Figure 1.** *Trade-off between detection accuracy and inference time.*  
 The CBAM-enhanced YOLOv5s shows improved accuracy with a small latency increase,  
@@ -75,8 +64,8 @@ demonstrating a balanced optimization suitable for real-time robotic perception.
 ---
 
 ### Qualitative Outputs
-- Validation results and confusion matrices are saved in `/runs/detect/val*/`.  
-- Detection samples (`val_batch*_pred.jpg`) show improved localization with CBAM integration.  
+- Validation results and confusion matrices are saved in `/runs/detect/val*/`(not all results added to git hub).  
+- Detection samples (`val_batch*_pred.jpg`) show improved localization with CBAM integration (added to git hub at /runs/detect/val2).  
 - PR and F1 curves illustrate stronger confidence and precision consistency.
 
 ---
@@ -99,12 +88,6 @@ Both the baseline YOLOv5s and the CBAM-enhanced version were successfully traine
 CBAM improved accuracy with minimal latency increase, proving its benefit for lightweight attention in robotic vision.  
 The experiment demonstrates that small architectural modifications can enhance feature attention  
 without compromising real-time inference performance.
-
----
-
-### Future Work
-For Assignment 3, a lightweight Transformer-based attention module will be integrated  
-to further improve global context awareness and feature correlation in complex robotic environments.
 
 ---
 
