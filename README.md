@@ -1,5 +1,5 @@
 # Assignment 2 – Hacking  
-## Object Detection for Robotic Vision using YOLOv5 with CBAM Attention
+## Object Detection for Robotic Vision using YOLOv5 with CBAM Attention Module
 
 ### Objective
 The goal of this assignment was to build and improve a baseline object detection model for robotic vision.  
