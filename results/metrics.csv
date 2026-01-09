@@ -1,2 +1,4 @@
 model,epochs,imgsz,map5095,inference_ms,fps,hardware,notes
 baseline_512,25,512,0.669,103.5,9.7,Windows CPU,"Ultralytics val output; coco128"
+baseline_640_e5,5,640,0.xxx,xxx.x,x.x,Windows CPU
+
