@@ -21,7 +21,7 @@ Model accuracy and speed were evaluated to analyze the trade-off between detecti
 3. **Evaluation and Speed Tests**
    - Validation performed using `!yolo detect val` on COCO128.  
    - Inference latency and FPS measured using `scripts/eval_speed.py`.  
-   - Outputs stored under `/runs/detect/`.
+   - Outputs stored under runs/baseline_512/ and runs/baseline_640_e5/ (training/val plots).
 
 ---
 
@@ -42,10 +42,20 @@ Model accuracy and speed were evaluated to analyze the trade-off between detecti
 
 ### Results Summary
 
-| Model | mAP@[.5:.95] | Latency (ms/img) | FPS |
-|:------|:-------------:|:----------------:|:---:|
-| **YOLOv5s (Base)** | 0.29 | 8.6 | ~116 |
-| **YOLOv5s + CBAM** | 0.32 (+0.03) | 9.2 (+0.6) | ~109 |
+## Runs and Results (Ultralytics validation)
+
+All runs were executed on Windows CPU (Intel i7-13620H) unless stated otherwise.
+Speed depends heavily on hardware (CPU vs GPU), so always label it.
+
+| run_name         | epochs | imgsz | mAP50-95 | inference (ms/img) | FPS  | hardware     |
+|------------------|--------|-------|----------|---------------------|------|--------------|
+| baseline_512     | 25     | 512   | 0.669    | 103.5               | 9.7  | Windows CPU  |
+| baseline_640_e5  | 5      | 640   | 0.598    | 96.2                | 10.4 | Windows CPU  |
+
+Proof files:
+- runs/baseline_512/ (plots + args.yaml, weights excluded)
+- runs/baseline_640_e5/ (plots + args.yaml + results.csv, weights excluded)
+
 
 **Interpretation:**  
 The CBAM module improved the model’s detection accuracy by +0.03 mAP with only a 7% increase in latency.  
@@ -55,7 +65,7 @@ Both models operate above real-time threshold (>30 FPS), confirming suitability 
 
 ### Accuracy vs Inference Time Trade-off
 
-![Accuracy vs Inference Time](plots/accuracy_vs_latency.png.png)
+![Accuracy vs Inference Time](plots/accuracy_vs_latency.png)
 
 **Figure 1.** *Trade-off between detection accuracy and inference time.*  
 The CBAM-enhanced YOLOv5s shows improved accuracy with a small latency increase,  
