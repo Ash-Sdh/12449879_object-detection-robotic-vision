@@ -21,7 +21,7 @@ if isinstance(model.model, nn.Sequential):
 
 print(f"CBAM inserted: {inserted}")
 model.train(
-    data="coco128.yaml",   g
+    data="coco128.yaml",   
     epochs=25,
     imgsz=640,
     batch=16,
