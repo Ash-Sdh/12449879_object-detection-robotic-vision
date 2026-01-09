@@ -2,3 +2,7 @@ runs/
 *.pt
 __pycache__/
 .ipynb_checkpoints/
+# Don't commit trained weights
+*.pt
+runs/**/weights/
+
