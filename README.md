@@ -1,105 +1,105 @@
 # Assignment 2 – Hacking  
 ## Object Detection for Robotic Vision using YOLOv5 with CBAM Attention Module
 
+---
+
 ### Objective
-The goal of this assignment was to build and improve a baseline object detection model for robotic vision.  
+The goal of this assignment was to build and evaluate object detection models for robotic vision using YOLOv5.  
 A pre-trained YOLOv5s model (trained on COCO) was used as the baseline.  
-To improve performance in cluttered environments, a Convolutional Block Attention Module (CBAM) was added to the YOLOv5 .  
-Model accuracy and speed were evaluated to analyze the trade-off between detection precision and inference time.
+To explore performance improvements in cluttered environments, a Convolutional Block Attention Module (CBAM) was implemented and tested within the YOLOv5 architecture.  
+Model accuracy and inference speed were evaluated to analyze trade-offs relevant to robotic perception.
+
+---
 
 ### Implementation Overview
 1. **Baseline YOLOv5s**
-   - Pre-trained model fine-tuned on the COCO128 dataset.  
-   - Trained for 25 epochs with default Ultralytics settings.  
-   - Evaluated using mean Average Precision (mAP) and inference latency.
+   - Pre-trained model fine-tuned on the COCO128 dataset.
+   - Trained using Ultralytics YOLO with multiple configurations.
+   - Evaluated using mean Average Precision (mAP50-95) and inference latency.
 
 2. **CBAM Integration**
-   - Added CBAM attention layers to the YOLOv5 backbone for better spatial and channel feature focus.  
-   - Implemented through the script `scripts/train_cbam.py`.  
-   - Trained for 25 epochs under the same conditions as the baseline.
+   - CBAM attention blocks implemented in the YOLOv5 backbone.
+   - Training logic implemented in `scripts/train_cbam.py`.
+   - CBAM functionality verified through unit tests.
 
 3. **Evaluation and Speed Tests**
-   - Validation performed using `!yolo detect val` on COCO128.  
-   - Inference latency and FPS measured using `scripts/eval_speed.py`.  
-   - Outputs stored under runs/baseline_512/ and runs/baseline_640_e5/ (training/val plots).
+   - Validation performed using `yolo detect val`.
+   - Inference latency and FPS measured on Windows CPU.
+   - Training and validation artifacts stored under `runs/`.
 
 ---
 
 ### Repository Structure
 
 | Folder/File | Description |
-|--------------|-------------|
+|------------|-------------|
 | `data/` | Dataset configuration files (e.g., coco128.yaml) |
 | `models/` | YOLOv5 architecture and CBAM modules |
 | `scripts/train_cbam.py` | Training script with CBAM integration |
 | `scripts/eval_speed.py` | Script for measuring inference time and FPS |
-| `runs/` | All training, validation, and result outputs |
-| `plots/accuracy_vs_latency.png` | Accuracy–latency comparison plot |
-| `requirements.txt` | Required Python packages |
-| `README.md` | Main documentation file |
+| `runs/` | Training and validation outputs (plots, configs) |
+| `results/metrics.csv` | Summary of all experiment metrics |
+| `tests/` | Unit tests for CBAM and inference |
+| `README.md` | Main documentation |
 
 ---
 
-### Results Summary
+### Runs and Results (Ultralytics validation)
 
-## Runs and Results (Ultralytics validation)
+All runs below were executed on **Windows CPU (Intel i7-13620H)**.  
+Inference speed depends heavily on hardware; therefore, results are reported with hardware labels.
 
-All runs were executed on Windows CPU (Intel i7-13620H) unless stated otherwise.
-Speed depends heavily on hardware (CPU vs GPU), so always label it.
+| run_name        | epochs | imgsz | mAP50-95 | inference (ms/img) | FPS  | hardware     |
+|-----------------|--------|-------|----------|---------------------|------|--------------|
+| baseline_512    | 25     | 512   | 0.669    | 103.5               | 9.7  | Windows CPU  |
+| baseline_640_e5 | 5      | 640   | 0.598    | 96.2                | 10.4 | Windows CPU  |
 
-| run_name         | epochs | imgsz | mAP50-95 | inference (ms/img) | FPS  | hardware     |
-|------------------|--------|-------|----------|---------------------|------|--------------|
-| baseline_512     | 25     | 512   | 0.669    | 103.5               | 9.7  | Windows CPU  |
-| baseline_640_e5  | 5      | 640   | 0.598    | 96.2                | 10.4 | Windows CPU  |
+**Proof files included in the repository:**
+- `runs/baseline_512/` (training curves, PR/F1 plots, args.yaml)
+- `runs/baseline_640_e5/` (training curves, validation plots, results.csv)
 
-Proof files:
-- runs/baseline_512/ (plots + args.yaml, weights excluded)
-- runs/baseline_640_e5/ (plots + args.yaml + results.csv, weights excluded)
-
-
-**Interpretation:**  
-The CBAM module improved the model’s detection accuracy by +0.03 mAP with only a 7% increase in latency.  
-Both models operate above real-time threshold (>30 FPS), confirming suitability for robotic vision applications.
+Model weight files (`*.pt`) are intentionally excluded from version control.
 
 ---
 
-### Accuracy vs Inference Time Trade-off
-
-![Accuracy vs Inference Time](plots/accuracy_vs_latency.png)
-
-**Figure 1.** *Trade-off between detection accuracy and inference time.*  
-The CBAM-enhanced YOLOv5s shows improved accuracy with a small latency increase,  
-showing a balanced optimization suitable for real-time robotic perception.
+### Interpretation
+On Windows CPU, the longer-trained `baseline_512` model achieves higher detection accuracy than the shorter `baseline_640_e5` run, while both operate at approximately 10 FPS.  
+CBAM integration is implemented and tested in this repository; however, CBAM training results on identical hardware are not included in the final run table.  
+This ensures fair comparison and avoids mixing CPU and GPU benchmarks.
 
 ---
 
 ### Qualitative Outputs
-- Validation results and confusion matrices are saved in `/runs/detect/val*/`(not all results added to git hub).  
-- Detection samples (`val_batch*_pred.jpg`) show improved localization with CBAM integration (added to git hub at /runs/detect/val2).  
-- PR and F1 curves illustrate stronger confidence and precision consistency.
+- Training and validation curves (loss, PR, F1) are stored in each run directory.
+- Confusion matrices and prediction samples (`val_batch*_pred.jpg`) are included where generated.
+- These outputs visually demonstrate detection behavior across configurations.
 
 ---
 
 ### Time Log
 
 | Task | Time Spent |
-|------|-------------|
+|------|-----------|
 | Data setup (COCO128 subset) | 1 h |
-| Baseline train + validation (25 epochs) | 3 h |
-| CBAM integration + training (25 epochs) | 5 h |
-| Speed test and result analysis | 2 h |
-| README writing and plot creation | 2 h |
+| Baseline training + validation | 3 h |
+| CBAM implementation + testing | 5 h |
+| Evaluation and metrics logging | 2 h |
+| Documentation | 2 h |
 | **Total ≈ 13 hours** | |
 
 ---
 
 ### Conclusion
-Both the baseline YOLOv5s and the CBAM-enhanced version were successfully trained and validated on Colab.  
-CBAM improved accuracy with minimal latency increase, proving its benefit for lightweight attention in robotic vision.  
-The experiment demonstrates that small architectural modifications can enhance feature attention  
-without compromising real-time inference performance.
+Multiple YOLOv5 training runs were successfully executed and tracked with full validation artifacts.  
+The project demonstrates how architectural variations and training configurations affect accuracy and inference speed for robotic vision tasks.  
+CBAM integration is implemented and validated through code and tests, providing a foundation for further attention-based experimentation.
 
 ---
+
+## References
+- Redmon, J., & Farhadi, A. (2018). *YOLOv3: An Incremental Improvement.* arXiv:1804.02767  
+- Woo, S., Park, J., Lee, J.-Y., & Kweon, I. S. (2018). *CBAM: Convolutional Block Attention Module.* ECCV  
+- Carion, N. et al. (2020). *End-to-End Object Detection with Transformers (DETR).* arXiv:2005.1
 
 # 12449879_object-detection-robotic-vision
 
