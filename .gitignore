@@ -5,4 +5,9 @@ __pycache__/
 # Don't commit trained weights
 *.pt
 runs/**/weights/
+# Demo outputs (keep repo clean)
+demo_outputs/
+!demo_outputs/results/test.jpg
+
+
 
