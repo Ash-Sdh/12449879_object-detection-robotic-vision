@@ -65,10 +65,13 @@ Model weight files (`*.pt`) are intentionally excluded from version control.
 ### Interpretation
 
 On Windows CPU, the longer-trained `baseline_512` model achieves higher detection accuracy than the shorter `baseline_640_e5` run, while both operate at approximately 10 FPS.  
-CBAM integration is implemented and tested in this repository; however, CBAM training results on identical hardware are not included in the final run table.  
-This ensures fair comparison and avoids mixing CPU and GPU benchmarks.
+
+CBAM integration is implemented and tested in this repository; however, CBAM training results on identical hardware are not included in the final run table. This ensures a fair comparison and avoids mixing CPU and GPU benchmarks.  
+
 CBAM introduces a small increase in inference time due to additional attention computations, which explains the observed accuracy–latency trade-off.
+
 ---
+
 
 ### Qualitative Outputs
 - Training and validation curves (loss, PR, F1) are stored in each run directory.
