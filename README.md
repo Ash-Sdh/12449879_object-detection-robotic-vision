@@ -66,7 +66,7 @@ Model weight files (`*.pt`) are intentionally excluded from version control.
 On Windows CPU, the longer-trained `baseline_512` model achieves higher detection accuracy than the shorter `baseline_640_e5` run, while both operate at approximately 10 FPS.  
 CBAM integration is implemented and tested in this repository; however, CBAM training results on identical hardware are not included in the final run table.  
 This ensures fair comparison and avoids mixing CPU and GPU benchmarks.
-
+CBAM introduces a small increase in inference time due to additional attention computations, which explains the observed accuracy–latency trade-off.
 ---
 
 ### Qualitative Outputs
@@ -75,6 +75,14 @@ This ensures fair comparison and avoids mixing CPU and GPU benchmarks.
 - These outputs visually demonstrate detection behavior across configurations.
 
 ---
+## Demo (YOLOv5 + CBAM)
+
+To run inference with the CBAM-augmented model:
+
+python detect.py \
+  --weights runs/train/yolov5s_cbam_640_e25/weights/best.pt \
+  --source data/images \
+  --img 640
 
 ### Time Log
 
