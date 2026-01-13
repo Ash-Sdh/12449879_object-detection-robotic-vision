@@ -1,5 +1,4 @@
-# Assignment 2 – Hacking  
-## Object Detection for Robotic Vision using YOLOv5 with CBAM Attention Module
+# Object Detection for Robotic Vision using YOLOv5 with CBAM Attention Module
 
 ---
 
